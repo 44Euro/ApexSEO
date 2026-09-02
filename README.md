@@ -40,17 +40,25 @@ npm install
 cp .env.example .env      # แล้วใส่ DATABASE_URL กับ AUTH_SECRET
 npm run db:migrate
 npm run db:seed           # 4 หมวด, 8 บทความ, admin 1 คน
-npm run dev
 ```
 
 `AUTH_SECRET` generate ด้วย `openssl rand -base64 32`
+
+จากนั้นเลือกรัน
+
+```bash
+npm run dev       # เว็บผู้อ่าน  → http://localhost:3000
+npm run dev:cms   # CMS         → http://localhost:3001/admin/login (เปิดเบราว์เซอร์ให้เอง)
+```
+
+ทั้งสองคำสั่งเป็นแอปเดียวกัน แค่คนละ port จึงรันพร้อมกันได้ (แต่ละตัวใช้ build directory ของตัวเองผ่าน `NEXT_DIST_DIR` ไม่งั้นจะเขียนทับกันแล้วขึ้น 404) ถ้าจะรันตัวเดียวก็ `npm run dev` แล้วเข้า `/admin/login` ที่ port เดิมได้เลย
 
 ## ทดสอบ
 
 ```bash
 npm test          # unit test ของ SEO logic
 npm run build     # typecheck + build
-npm run test:e2e  # ต้อง npm run build แล้ว ./e2e/serve.sh ก่อน
+npm run test:e2e  # ต้อง db:seed แล้ว build แล้ว ./e2e/serve.sh ตามลำดับนี้ก่อน
 ```
 
 `npm run test:e2e` ครอบคลุมการ์ด `/admin`, flow ล็อกอิน, filter, confirm dialog, SEO panel แบบเรียลไทม์, การตรวจค่าสีและระยะเทียบ design token และที่สำคัญที่สุดคือพิสูจน์ว่า publish แล้วหน้า public กับ sitemap อัปเดตทันทีบน production build จริง
@@ -82,4 +90,5 @@ lib/
 prisma/              schema, migrations, seed + เนื้อหาบทความ markdown
 e2e/                 Playwright — flow, การพิสูจน์ revalidation, การตรวจ design token
 ```
+
 # ApexSEO

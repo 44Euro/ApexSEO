@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SearchResultRow } from "@/components/ArticleRow";
 import { prisma } from "@/lib/prisma";
 import { articleSelect, getNavCategories, publishedFilter, withReadingTime } from "@/lib/articles";
+import { SearchForm } from "./SearchForm";
 
 export const dynamic = "force-dynamic";
 
@@ -42,19 +43,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
 
       <div style={{ padding: "44px 32px 24px", maxWidth: 760 }}>
         <h1 className="m-0 mb-[20px] text-[34px]">ค้นหาบทความ</h1>
-        <form method="GET" action="/search" className="flex gap-[10px]">
-          <input
-            className="input"
-            name="q"
-            defaultValue={query}
-            placeholder="เช่น undercut, budget cap, ground effect"
-            style={{ minHeight: 44, fontSize: 15 }}
-            aria-label="คำค้นหา"
-          />
-          <button className="btn btn-primary" style={{ minHeight: 44, paddingInline: 18 }}>
-            ค้นหา
-          </button>
-        </form>
+        <SearchForm query={query} />
         {query && (
           <p className="mt-[16px] mb-0 text-[13px] text-[#9397ab]">
             {results.length === 0

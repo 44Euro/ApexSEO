@@ -1,6 +1,6 @@
 import { chromium } from "playwright";
 
-const BASE = process.env.BASE ?? "http://localhost:3000";
+const BASE = process.env.BASE ?? "http://localhost:3001";
 const results = [];
 function check(name, ok, detail = "") {
   results.push({ name, ok, detail });
