@@ -82,3 +82,4 @@ lib/
 prisma/              schema, migrations, seed + เนื้อหาบทความ markdown
 e2e/                 Playwright — flow, การพิสูจน์ revalidation, การตรวจ design token
 ```
+# ApexSEO
